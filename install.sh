@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# curl -fsSL https://raw.githubusercontent.com/lucas-farias07/windowrun/windowrun-go/install.sh | bash
+# curl -fsSL https://raw.githubusercontent.com/lucas-farias07/windowrun/main/install.sh | bash
 set -euo pipefail
 
 REPO="lucas-farias07/windowrun"
-REF="${WINDOWRUN_REF:-windowrun-go}"
+REF="${WINDOWRUN_REF:-main}"
 BIN_DIR="${WINDOWRUN_BIN_DIR:-$HOME/.local/bin}"
 
 command -v go >/dev/null 2>&1 || { echo "error: 'go' not found in PATH (required to build)" >&2; exit 1; }

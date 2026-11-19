@@ -46,17 +46,18 @@ func DesktopDirs() (dirs []string, err error) {
 	return
 }
 
-func StateDir() (dir string, err error) {
-	if HOME == "" {
-		return "", errors.New("could not find home directory")
-	}
+// This is for later updates, first ill full rewrite what i made with shell and pyton
+// func StateDir() (dir string, err error) {
+// 	if HOME == "" {
+// 		return "", errors.New("could not find home directory")
+// 	}
 
-	dir = os.Getenv("XDG_STATE_HOME")
-	if dir == "" {
-		dir = filepath.Join(HOME, ".local/state")
-	}
+// 	dir = os.Getenv("XDG_STATE_HOME")
+// 	if dir == "" {
+// 		dir = filepath.Join(HOME, ".local/state")
+// 	}
 
-	dir = filepath.Join(dir, "windowrun")
+// 	dir = filepath.Join(dir, "windowrun")
 
-	return
-}
+// 	return
+// }
