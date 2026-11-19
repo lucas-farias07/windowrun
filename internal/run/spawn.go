@@ -6,8 +6,12 @@ import (
 	"syscall"
 )
 
-func SpawnWindowrun() {
+func SpawnWindowrun() error {
 	cmd := exec.Command(os.Getenv("TERMINAL"))
 	cmd.SysProcAttr = &syscall.SysProcAttr{Setsid: true}
-	cmd.Start()
+	err := cmd.Start()
+	if err != nil {
+		return err
+	}
+	return nil
 }
