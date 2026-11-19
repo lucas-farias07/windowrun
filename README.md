@@ -8,7 +8,7 @@
 ## About and requirements
 
 A fzf-based light app launcher written with shell and python.
-I might start updating it so it fits for more people's uses
+Expect updates soon.
 
 Only needs:
 - Following needs to be installed:
