@@ -5,7 +5,7 @@ A light, fzf-based app launcher written in Go.
 [Requirements](#-requirements) · [Installation](#-installation) · [Configuration](#-configuration)
 
 > [!WARNING]
-> This project is completely **W.I.P.** and the Go version is **NOT** ready.
+> First Release of the Go version! Expect improvements and features.
 
 ## 📖 About
 
