@@ -58,12 +58,12 @@ Or add it to your `flake.nix`:
 
 You can either clone the repository and build it, or run the install script.
 
-### Install script
+#### Install script
 ```bash
 curl -fsSL https://raw.githubusercontent.com/lucas-farias07/windowrun/main/install.sh | bash
 ```
 
-### Clone & build
+#### Clone & build
 Remember to clone the repository to the desired folder location.
 
 1. Clone the repository:
