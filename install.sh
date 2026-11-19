@@ -1,40 +1,35 @@
 #!/usr/bin/env bash
-# Install windowrun to ~/.local/share/windowrun and link it into ~/.local/bin.
-#
-#   curl -fsSL https://raw.githubusercontent.com/lucas-farias07/windowrun/main/install.sh | bash
+# curl -fsSL https://raw.githubusercontent.com/lucas-farias07/windowrun/main/install.sh | bash
 set -euo pipefail
 
 REPO="lucas-farias07/windowrun"
 REF="${WINDOWRUN_REF:-main}"
-BASE_URL="https://raw.githubusercontent.com/$REPO/$REF"
-FILES=(windowrun.sh finder.py)
+BIN_DIR="${WINDOWRUN_BIN_DIR:-$HOME/.local/bin}"
 
-INSTALL_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/windowrun"
-BIN_DIR="$HOME/.local/bin"
+command -v go >/dev/null 2>&1 || { echo "error: 'go' not found in PATH (required to build)" >&2; exit 1; }
+command -v fzf >/dev/null 2>&1 || echo "warning: 'fzf' not found in PATH (required at runtime)" >&2
 
-for dep in curl python3 fzf; do
-  command -v "$dep" >/dev/null 2>&1 || echo "warning: '$dep' not found in PATH (required)" >&2
-done
-
-mkdir -p "$INSTALL_DIR" "$BIN_DIR"
-
-# download to a temp dir first so a failed download doesn't leave a half install (had this problem be4)
 tmp="$(mktemp -d)"
 trap 'rm -rf "$tmp"' EXIT
 
-for f in "${FILES[@]}"; do
-  curl -fsSL "$BASE_URL/$f" -o "$tmp/$f"
-done
+src=""
+if [ -n "${BASH_SOURCE[0]:-}" ] && [ -f "${BASH_SOURCE[0]}" ]; then
+  here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+  [ -f "$here/main.go" ] && src="$here"
+fi
 
-for f in "${FILES[@]}"; do
-  install -m 0755 "$tmp/$f" "$INSTALL_DIR/$f"
-done
+if [ -z "$src" ]; then
+  command -v curl >/dev/null 2>&1 || { echo "error: 'curl' not found in PATH" >&2; exit 1; }
+  curl -fsSL "https://github.com/$REPO/archive/refs/heads/$REF.tar.gz" | tar -xz -C "$tmp"
+  src="$(echo "$tmp"/*/)"
+fi
 
-# windowrun.sh resolves its own symlink, so finder.py is still found
-ln -sf "$INSTALL_DIR/windowrun.sh" "$BIN_DIR/windowrun"
+(cd "$src" && go build -o "$tmp/windowrun" .)
 
-echo "Installed to $INSTALL_DIR"
-echo "Linked $BIN_DIR/windowrun"
+mkdir -p "$BIN_DIR"
+install -m 0755 "$tmp/windowrun" "$BIN_DIR/windowrun"
+
+echo "Installed $BIN_DIR/windowrun"
 
 case ":$PATH:" in
   *":$BIN_DIR:"*) ;;
