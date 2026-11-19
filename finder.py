@@ -64,11 +64,13 @@ for base in dirs:
         exec_cmd = re.sub(r"%[a-zA-Z]", "", exec_cmd)
         exec_cmd = re.sub(r"@@.*@@|@@", "", exec_cmd).strip()
 
+        needs_terminal = bool(re.search(r"^Terminal\s*=\s*true", section, re.M | re.I))
+
         if name not in seen_names:
             seen_names.add(name)
             kw = keywords.get(fname, [])
             display = f"{name} ({', '.join(kw)})" if kw else name
-            results.append(f"{display}\t{exec_cmd}")
+            results.append(f"{display}\t{exec_cmd}\t{'1' if needs_terminal else '0'}")
 
 results.sort(key=lambda x: x.split("\t")[0].split(" (")[0].lower())
 for r in results:
