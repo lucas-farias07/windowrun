@@ -1,6 +1,8 @@
-# 🚀 windowrun
+# 🚀 windowrun — a fast, fzf-powered app launcher
 
 A light, fzf-based app launcher written in Go.
+
+![windowrun demo](media/image-demo.png)
 
 [Requirements](#-requirements) · [Installation](#-installation) · [Configuration](#-configuration)
 
@@ -10,6 +12,8 @@ A light, fzf-based app launcher written in Go.
 ## 📖 About
 
 windowrun is a lightweight app launcher built on top of [fzf](https://github.com/junegunn/fzf) and written in Go.
+
+https://github.com/lucas-farias07/windowrun/raw/main/media/video-demo.mp4
 
 ## 📋 Requirements
 
