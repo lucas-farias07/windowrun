@@ -128,4 +128,4 @@ It lets you:
 ```
 
 ##### Extensions:
-I am planning on ading extensions to windowrun similar to how I did windowrun-extended for the old version. But I still need to learn more stuff about go (don't want to be Ai-assisted forever) before going in-depth in an extension system.
+I am planning on adding extensions to windowrun similar to how I did windowrun-extended for the old version. But I still need to learn more stuff about go (don't want to be Ai-assisted forever) before going in-depth in an extension system.
