@@ -20,7 +20,7 @@ https://github.com/lucas-farias07/windowrun/raw/main/media/video-demo.mp4
 | Requirement | Details |
 | --- | --- |
 | **Go** | 1.26.0 or newer (only to build) |
-| **fzf** | Fuzzy finder used for the launcher UI |
+| **fzf** | Fuzzy finder used for the launcher UI. Credits: https://github.com/junegunn/fzf |
 | **`$TERMINAL`** | Environment variable set to your preferred terminal emulator |
 
 ## 📦 Installation
